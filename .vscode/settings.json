@@ -1,5 +1,11 @@
 {
     "files.associations": {
-        "vector": "cpp"
+        "vector": "cpp",
+        "__bit_reference": "cpp",
+        "__mutex_base": "cpp",
+        "__split_buffer": "cpp",
+        "string": "cpp",
+        "tuple": "cpp",
+        "variant": "cpp"
     }
 }
