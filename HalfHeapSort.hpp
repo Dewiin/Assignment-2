@@ -48,5 +48,6 @@ int halfHeapSort(vector<int>& nums, int& duration) {
         std::swap(nums[0], nums[i]);
         percDown(nums, 0);
     }
-    
+
+    return nums[nums.size()/2];
 }

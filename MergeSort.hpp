@@ -27,7 +27,7 @@ int mergeSort(vector<int>& nums, int& duration) {
     int n = nums.size()/2;
 
     for(auto it = nums.begin(); it != nums.end(); it++) {
-        if(it < nums.begin() + n) {
+        if(std::distance(nums.begin(), it) < n) {
             left.push_back(*it);
         }
         else {

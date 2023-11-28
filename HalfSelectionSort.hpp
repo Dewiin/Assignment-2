@@ -20,7 +20,7 @@ int halfSelectionSort(vector<int>& nums, int& duration) {
     //initialize halfway index for vector
     int n = nums.size()/2;
 
-    for(auto it = nums.begin(); it != nums.begin() + n + 1; it++) {
+    for(auto it = nums.begin(); it != nums.begin() + n; it++) {
         //Store current index 
         auto minIndex = it;
 
