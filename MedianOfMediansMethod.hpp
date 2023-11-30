@@ -2,7 +2,7 @@
 CSCI335 Fall 2023
 Assignment 2 – Medians
 Name: Devin Xie
-Date: Oct Nov 19 2023
+Date: Nov 19 2023
 MedianOfMediansMethod.hpp implements the Median of Medians method.
 */
 

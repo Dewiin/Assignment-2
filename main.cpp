@@ -16,6 +16,7 @@ using namespace std;
 int main() {
     vector<int> nums;
     int complexity;
+
     fstream file("input1.txt");
 
     int num;
@@ -25,7 +26,7 @@ int main() {
     }
 
     //sort
-    halfSelectionSort(nums, complexity);
+    quickSelect(nums, complexity);
 
     for(auto i : nums) {
         cout << i << " ";
