@@ -25,12 +25,15 @@ int main() {
         nums.push_back(num);
     }
 
-    //sort
-    quickSelect(nums, complexity);
+    //sorts
+    halfSelectionSort(nums, complexity);
+    // standardSort(nums, complexity);
+    // mergeSort(nums, complexity);
+    // inPlaceMergeSort(nums, complexity);
+    // halfHeapSort(nums, complexity);
+    // quickSelect(nums, complexity);
 
-    for(auto i : nums) {
-        cout << i << " ";
-    }
+    cout << complexity;
 
     return 0;
 }
