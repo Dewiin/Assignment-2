@@ -17,7 +17,7 @@ int main() {
     vector<int> nums;
     int complexity;
 
-    fstream file("input1.txt");
+    fstream file("input8.txt");
 
     int num;
 
@@ -26,12 +26,23 @@ int main() {
     }
 
     //sorts
-    halfSelectionSort(nums, complexity);
+    // halfSelectionSort(nums, complexity);
     // standardSort(nums, complexity);
     // mergeSort(nums, complexity);
     // inPlaceMergeSort(nums, complexity);
-    // halfHeapSort(nums, complexity);
+    halfHeapSort(nums, complexity);
     // quickSelect(nums, complexity);
+
+    // vector<int> worst = worstCaseQuickSelect();
+    // quickSelect(worst, complexity);
+
+    // for(auto i : worst) {
+    //     cout << i << " ";
+    // }
+    
+    // for(auto i : nums) {
+    //     cout << i << " ";
+    // }
 
     cout << complexity;
 

@@ -15,18 +15,24 @@ using namespace std;
 vector<int>::iterator median3(vector<int>::iterator left, vector<int>::iterator right) {
     auto center = left + std::distance(left, right)/2;
 
-    if(*center < *left) {
-        std::iter_swap(left, center);   
+    //if two elements share the same value, make leftmost element the pivot
+    if(*left == *center || *left == *right || *center == *right) {
+        std::iter_swap(left, right);
+        return right;
     }
-    if(*right < *left) {
-        std::iter_swap(left, right);    
+    else {
+        //if left is the median
+        if((*center < *left && *left < *right) || (*center > *left && *left > *right)) {
+            std::iter_swap(left, right);
+        } 
+        //if center is the median
+        if((*left < *center && *center < *right) || (*left > *center && *center > *right)) {
+            std::iter_swap(center, right);
+        }
+        else{
+            return right;
+        }
     }
-    if(*right < *center) {
-        std::iter_swap(center, right);
-    }
-
-    //place pivot at position right
-    std::iter_swap(center, right);
     return right;
 }
 
@@ -36,12 +42,16 @@ vector<int>::iterator median3(vector<int>::iterator left, vector<int>::iterator 
 vector<int>::iterator hoarePartition(vector<int>& nums, vector<int>::iterator low, vector<int>::iterator high) {
     //Begin partitioning
     auto pivot = median3(low, high);
-    auto i = low, j = high-1;
+    auto i = low, j = pivot-1;
 
-    for( ; ; ) {
-        while(*i < *pivot) { i++; }
-        while(*pivot < *j) { j--; }
-        if(std::distance(i, j) >= 0) {
+    while(true) {
+        while(*i < *pivot) {
+            ++i;
+        }
+        while(*j > *pivot) {
+            --j;
+        }
+        if(std::distance(i, j) > 0) {
             std::iter_swap(i, j);
         }
         else {
@@ -54,39 +64,36 @@ vector<int>::iterator hoarePartition(vector<int>& nums, vector<int>::iterator lo
     return i;
 }
 
-int quickSelectHelper(vector<int>& nums, int k) {
+int quickSelectHelper(vector<int>& nums, vector<int>::iterator low, vector<int>::iterator high, vector<int>::iterator k)  {
     //base case
-    if(nums.size() <= 10){
-        std::sort(nums.begin(), nums.end());
-        return nums[k];
+    if(high <= low + 9){
+        std::sort(low, high + 1);
+        return *k;
     }
 
     //partition
-    auto pivot = hoarePartition(nums, nums.begin(), nums.end()-1);
+    auto pivot = hoarePartition(nums, low, high);
 
-    //S1
-    vector<int> S1(nums.begin(), pivot);
-    //S2
-    vector<int> S2(pivot + 1, nums.end());
-
-    if(k <= S1.size()) {
-        return quickSelectHelper(S1, k);
+    if(k < pivot) {
+        return quickSelectHelper(nums, low, pivot - 1, k);
     }
-    else if(k == S1.size() + 1) {
-        return *pivot;
+    else if(k == pivot) {
+        return *k;
     }
-    else{
-        return quickSelectHelper(S2, k - S1.size() - 1);
-    }
+    return quickSelectHelper(nums, pivot + 1, high, k);
 }
 
 int quickSelect(vector<int>& nums, int& duration) {
-    //initialize median index
-    int n = nums.size()/2 + (nums.size()%2 == 0 ? 0 : 1);
+    auto start = chrono::steady_clock::now();
 
-    int median = quickSelectHelper(nums, n);
+    //initialize median index
+    auto n = nums.begin() + (nums.size()-(nums.size() % 2 == 0 ? 1 : 0))/2;
+
+    int median = quickSelectHelper(nums, nums.begin(), nums.end()-1, n);
+
+    auto end = chrono::steady_clock::now();
+
+    duration = chrono::duration<double, milli>(end - start).count();
 
     return median;
-
-    //return nums.size()%2 == 0 ? *(nums.begin() + (n - 1)) : *(nums.begin() + n);
 }

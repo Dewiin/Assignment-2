@@ -18,22 +18,13 @@ void mergeSort_helper(vector<int>& nums) {
         return;
     }
 
-    //vector for storing left half values
-    vector<int> left; 
-    //vector for storing right half values
-    vector<int> right;
-
     //initialize median index
-    int n = nums.size()/2;
+    auto n = nums.begin() + nums.size()/2;
 
-    for(auto it = nums.begin(); it != nums.end(); it++) {
-        if(std::distance(nums.begin(), it) < n) {
-            left.push_back(*it);
-        }
-        else {
-            right.push_back(*it);
-        }
-    }
+    //vector for storing left half values
+    vector<int> left(nums.begin(), n); 
+    //vector for storing right half values
+    vector<int> right(n , nums.end());
 
     //recursive splitting
     mergeSort_helper(left);
