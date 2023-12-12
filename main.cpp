@@ -17,7 +17,7 @@ int main() {
     vector<int> nums;
     int complexity;
 
-    fstream file("input8.txt");
+    fstream file("input9.txt");
 
     int num;
 
@@ -30,7 +30,7 @@ int main() {
     // standardSort(nums, complexity);
     // mergeSort(nums, complexity);
     // inPlaceMergeSort(nums, complexity);
-    halfHeapSort(nums, complexity);
+    // halfHeapSort(nums, complexity);
     // quickSelect(nums, complexity);
 
     // vector<int> worst = worstCaseQuickSelect();

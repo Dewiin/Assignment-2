@@ -90,6 +90,7 @@ int medianOfMedians(vector<int>& nums, vector<int>::iterator low, vector<int>::i
             medians.push_back(median);
         }
 
+        //add last remaining elements between 3 and 5
         vector<int> temp;
         if(std::distance(it, nums.end()) > 2) {
             while(std::distance(it, nums.end()) > 0) {
