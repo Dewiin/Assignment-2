@@ -28,7 +28,7 @@ int halfSelectionSort(vector<int>& nums, int& duration) {
         auto minIndex = it;
 
         for(auto it2 = it+1; it2 != nums.end(); it2++){
-            if(*it2 < *minIndex){
+            if(*it2 <= *minIndex){
                 minIndex = it2;
             }
         }
